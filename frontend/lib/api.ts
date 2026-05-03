@@ -22,6 +22,9 @@ import { ApiError } from './types'
  */
 const BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000').replace(/\/+$/, '')
 
+// Export for use in components (e.g., Navbar API docs link)
+export { BASE }
+
 // ── Core fetch wrapper ────────────────────────────────────
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response

@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 import { useTheme } from '@/hooks/useTheme'
 import { useState } from 'react'
+import { BASE } from '@/lib/api'
 
 const navItems = [
   { href: '/', label: 'Dashboard' },
@@ -41,7 +42,7 @@ export function Navbar() {
             </Link>
           ))}
           <a
-            href="http://localhost:8000/docs"
+            href={`${BASE}/docs`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[10px] font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
@@ -91,14 +92,14 @@ export function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden border-t border-[var(--border)] bg-[var(--card)]/90 backdrop-blur-xl">
-          <div className="responsive-container py-1.5 space-y-0.5">
+          <div className="responsive-container py-2 space-y-1 text-center">
             {navItems.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
-                  'block text-[10px] font-medium py-1 transition-colors',
+                  'block text-xs font-medium py-1 transition-colors',
                   pathname === href 
                     ? 'text-[var(--primary)]' 
                     : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)]'
@@ -108,11 +109,11 @@ export function Navbar() {
               </Link>
             ))}
             <a
-              href="http://localhost:8000/docs"
+              href={`${BASE}/docs`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="block text-[10px] font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors py-1"
+              className="block text-xs font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors py-1"
             >
               API Docs
             </a>
