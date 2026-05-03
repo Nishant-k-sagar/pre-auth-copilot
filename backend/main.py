@@ -188,8 +188,22 @@ def _normalize_origin(origin: str) -> Optional[str]:
     return f"{parsed.scheme}://{parsed.netloc}"
 
 
+_LOCAL_DEV_ORIGINS: List[str] = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+]
+
+
 def _get_allowed_origins() -> List[str]:
-    """Collect and normalize allowed CORS origins from environment variables."""
+    """Collect and normalize allowed CORS origins from environment variables.
+
+    Always includes localhost dev origins unless ENVIRONMENT=production is set,
+    so local development works without modifying .env.
+    Localhost origins are harmless in production: browsers never send real
+    cross-origin requests from localhost to a remote server.
+    """
     origin_sources = [
         os.environ.get("ALLOWED_ORIGINS", ""),
         os.environ.get("FRONTEND_URL", ""),
@@ -205,6 +219,13 @@ def _get_allowed_origins() -> List[str]:
                 continue
             seen.add(normalized)
             origins.append(normalized)
+
+    is_production = os.environ.get("ENVIRONMENT", "").lower() == "production"
+    if not is_production:
+        for dev_origin in _LOCAL_DEV_ORIGINS:
+            if dev_origin not in seen:
+                seen.add(dev_origin)
+                origins.append(dev_origin)
 
     logger.info("Configured CORS allowed origins: %s", origins)
     return origins

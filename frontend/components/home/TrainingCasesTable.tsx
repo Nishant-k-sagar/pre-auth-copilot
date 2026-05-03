@@ -38,14 +38,17 @@ export function TrainingCasesTable({ cases }: TrainingCasesTableProps) {
 
   async function handleAnalyzeCase(tc: TrainingCase) {
     setAnalyzingId(tc.case_id)
+    const MAX_RAW_NOTES = 20000
+    const rawNotes = (
+      `Clinical scenario: ${tc.clinical_scenario}\n` +
+      `Supporting evidence: ${tc.key_supporting_evidence}\n` +
+      `Gaps or risks: ${tc.key_gaps_or_risks}`
+    ).slice(0, MAX_RAW_NOTES)
     const output = await analyze({
       case_id: tc.case_id,
       requested_service: tc.requested_service,
       primary_diagnosis: tc.clinical_scenario,
-      raw_clinical_notes:
-        `Clinical scenario: ${tc.clinical_scenario}\n` +
-        `Supporting evidence: ${tc.key_supporting_evidence}\n` +
-        `Gaps or risks: ${tc.key_gaps_or_risks}`,
+      raw_clinical_notes: rawNotes,
     })
     setAnalyzingId(null)
     if (output) router.push('/result')

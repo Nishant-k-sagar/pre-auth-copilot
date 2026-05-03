@@ -31,9 +31,12 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const shouldSetContentType = method !== 'GET' && method !== 'HEAD'
 
   try {
+    const baseHeaders: Record<string, string> = shouldSetContentType
+      ? { 'Content-Type': 'application/json' }
+      : {}
     res = await fetch(`${BASE}${path}`, {
-      headers: shouldSetContentType ? { 'Content-Type': 'application/json' } : {},
       ...init,
+      headers: { ...baseHeaders, ...(init?.headers as Record<string, string> | undefined) },
     })
   } catch {
     // Network error — backend unreachable
@@ -45,10 +48,20 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
 
   if (!res.ok) {
     const body = await res.json().catch(() => ({}))
-    const message =
-      body?.detail?.message ||
-      (typeof body?.detail === 'string' ? body.detail : null) ||
-      `Request failed with status ${res.status}`
+    let message: string
+    if (typeof body?.detail === 'string') {
+      message = body.detail
+    } else if (typeof body?.detail?.message === 'string') {
+      message = body.detail.message
+    } else if (Array.isArray(body?.detail) && body.detail.length > 0) {
+      const first = body.detail[0]
+      const loc = Array.isArray(first?.loc)
+        ? first.loc.filter((l: unknown) => l !== 'body').join(' -> ')
+        : ''
+      message = loc ? `Validation error on '${loc}': ${first.msg}` : (first.msg ?? `Request failed with status ${res.status}`)
+    } else {
+      message = `Request failed with status ${res.status}`
+    }
     throw new ApiError(res.status, message, body)
   }
 

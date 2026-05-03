@@ -13,6 +13,8 @@ services:
         value: https://pre-auth-copilot-next-app.onrender.com
       - key: PYTHONUNBUFFERED
         value: "1"
+      - key: ENVIRONMENT
+        value: "production"
     plan: free
 
   - type: static
