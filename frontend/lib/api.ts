@@ -37,6 +37,11 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     const baseHeaders: Record<string, string> = shouldSetContentType
       ? { 'Content-Type': 'application/json' }
       : {}
+
+    if (process.env.NEXT_PUBLIC_API_KEY) {
+      baseHeaders['Authorization'] = `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
+    }
+
     res = await fetch(`${BASE}${path}`, {
       ...init,
       headers: { ...baseHeaders, ...(init?.headers as Record<string, string> | undefined) },
@@ -71,29 +76,22 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>
 }
 
-// ── API functions ─────────────────────────────────────────
 
-/** Returns all 10 training cases for the selector dropdown */
 export async function fetchTrainingCases(): Promise<TrainingCase[]> {
   return apiFetch<TrainingCase[]>('/api/cases')
 }
-
-/** Returns backend health status */
 export async function fetchHealth(): Promise<{ status: string; model: string }> {
   return apiFetch<{ status: string; model: string }>('/api/health')
 }
 
-/** Returns a single training case by ID. PA-001 also returns has_full_packet: true */
 export async function fetchCaseById(id: string): Promise<TrainingCase> {
   return apiFetch<TrainingCase>(`/api/cases/${id}`)
 }
 
-/** Returns the 30-field schema with why_it_matters tooltips */
+
 export async function fetchInputSchema(): Promise<SchemaField[]> {
   return apiFetch<SchemaField[]>('/api/schema')
 }
-
-/** Main analysis route — sends structured case, returns full output */
 export async function analyzeCase(
   input: PreAuthCaseInput
 ): Promise<PreAuthSkillOutput> {
@@ -111,9 +109,15 @@ export async function uploadAndAnalyze(file: File): Promise<PreAuthSkillOutput> 
   formData.append('file', file)
 
   try {
+    const headers: Record<string, string> = {}
+    if (process.env.NEXT_PUBLIC_API_KEY) {
+      headers['Authorization'] = `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
+    }
+
     res = await fetch(`${BASE}/api/analyze/upload`, {
       method: 'POST',
       body: formData,
+      headers,
       // Do NOT set Content-Type here — browser sets multipart boundary automatically
     })
   } catch {
@@ -150,7 +154,12 @@ export async function runValidation(): Promise<ValidationSummary> {
  * Returns an async iterable of progress events.
  */
 export async function* runValidationStream(): AsyncIterable<ValidationProgressEvent> {
-   const response = await fetch(`${BASE}/api/validate-all/stream`)
+   const headers: Record<string, string> = {}
+   if (process.env.NEXT_PUBLIC_API_KEY) {
+     headers['Authorization'] = `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`
+   }
+
+   const response = await fetch(`${BASE}/api/validate-all/stream`, { headers })
 
    if (!response.ok) {
      const body = await response.json().catch(() => ({}))
