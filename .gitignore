@@ -21,6 +21,8 @@ node_modules/
 frontend/node_modules/
 .next/
 frontend/.next/
+out/
+frontend/out/
 
 # Output files
 outputs/
@@ -36,4 +38,3 @@ Thumbs.db
 step123.md
 step456.md
 implementation_plan.md
-DEPLOYMENT_PLAN.md
