@@ -20,7 +20,7 @@ import { ApiError } from './types'
  * Example for Vercel:
  *   Set NEXT_PUBLIC_API_URL in your project environment variables.
  */
-const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+const BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000').replace(/\/+$/, '')
 
 // ── Core fetch wrapper ────────────────────────────────────
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
