@@ -10,7 +10,7 @@ services:
       - key: MISTRAL_API_KEY
       - key: API_KEY
       - key: ALLOWED_ORIGINS
-        value: https://preauth-frontend.onrender.com
+        value: https://pre-auth-copilot-next-app.onrender.com
       - key: PYTHONUNBUFFERED
         value: "1"
     plan: free
@@ -22,5 +22,5 @@ services:
     publishPath: out
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        value: https://preauth-backend.onrender.com
+        value: https://pre-auth-copilot.onrender.com
     plan: free
