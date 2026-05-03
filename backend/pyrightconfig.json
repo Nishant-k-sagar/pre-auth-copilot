@@ -1,0 +1,14 @@
+{
+    "venvPath": ".",
+    "venv": "venv",
+    "ignore": [
+        "**/venv/**",
+        "**/.venv/**"
+    ],
+    "reportMissingImports": true,
+    "reportUnknownVariableType": false,
+    "reportUnknownMemberType": false,
+    "reportUnknownParameterType": false,
+    "reportMissingTypeArgument": false,
+    "reportUntypedFunctionDecorator": false
+}

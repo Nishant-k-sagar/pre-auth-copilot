@@ -1,0 +1,27 @@
+name: Uptime Monitor
+
+on:
+  schedule:
+    # Run every 10 minutes to keep Render services awake
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    # Allow manual trigger
+
+jobs:
+  ping-services:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend
+        run: |
+          echo "Pinging backend..."
+          curl -f -s -o /dev/null -w "Backend status: %{http_code}\n" \
+            https://preauth-backend.onrender.com/api/health
+      
+      - name: Ping Frontend
+        run: |
+          echo "Pinging frontend..."
+          curl -f -s -o /dev/null -w "Frontend status: %{http_code}\n" \
+            https://preauth-frontend.onrender.com/
+
+      - name: Log Success
+        run: echo "Uptime check completed successfully"

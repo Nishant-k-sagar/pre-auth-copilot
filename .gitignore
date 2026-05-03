@@ -1,0 +1,39 @@
+# Environment files
+.env
+.env.*
+
+.kilocode/
+
+# Python
+venv/
+backend/venv/
+__pycache__/
+backend/__pycache__/
+*.pyc
+backend/*.pyc
+*.pyo
+.pytest_cache/
+backend/.pytest_cache/
+backend/.env
+
+# Node.js
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+
+# Output files
+outputs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+step123.md
+step456.md
+implementation_plan.md
+DEPLOYMENT_PLAN.md

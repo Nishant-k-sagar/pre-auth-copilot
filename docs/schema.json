@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pre-Authorization Copilot Schema",
+  "description": "Machine-readable JSON schema for PreAuthCaseInput and PreAuthSkillOutput",
+  "definitions": {
+    "SourcedField": {
+      "type": "object",
+      "properties": {
+        "value": { "type": ["string", "null"] },
+        "source": { "type": ["string", "null"] },
+        "source_date": { "type": ["string", "null"] }
+      },
+      "required": ["value", "source", "source_date"]
+    },
+    "PreAuthCaseInput": {
+      "type": "object",
+      "properties": {
+        "case_id": { "type": ["string", "null"] },
+        "payer_plan": { "type": ["string", "null"] },
+        "requested_service": { "type": "string" },
+        "site_of_care": { "type": ["string", "null"] },
+        "requested_los": { "type": ["string", "null"] },
+        "payer_policy_version": { "type": ["string", "null"] },
+        "payer_policy_excerpt": { "type": ["string", "null"] },
+        "age": { "type": ["integer", "null"] },
+        "sex": { "type": ["string", "null"] },
+        "primary_diagnosis": { "type": "string" },
+        "secondary_diagnoses": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "symptom_duration": { "type": ["string", "null"] },
+        "pain_severity": { "type": ["string", "null"] },
+        "functional_impairment_adls": { "$ref": "#/definitions/SourcedField" },
+        "objective_neurologic_deficits": { "$ref": "#/definitions/SourcedField" },
+        "vital_signs": { "type": ["string", "null"] },
+        "mental_status": { "type": ["string", "null"] },
+        "prior_conservative_treatment": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "response_to_prior_treatment": { "type": ["string", "null"] },
+        "prior_surgeries_procedures": { "type": ["string", "null"] },
+        "current_medications": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "medication_contraindications": { "type": ["string", "null"] },
+        "imaging_findings": { "$ref": "#/definitions/SourcedField" },
+        "lab_results": { "type": ["string", "null"] },
+        "pathology_biopsy": { "type": ["string", "null"] },
+        "specialized_tests": { "type": ["string", "null"] },
+        "prior_hospitalizations_ed": { "type": ["string", "null"] },
+        "complications_red_flags": { "type": ["string", "null"] },
+        "ordering_provider_specialty": { "type": ["string", "null"] },
+        "required_prerequisites": { "type": ["string", "null"] },
+        "missing_records": { "type": ["string", "null"] },
+        "contradictory_flags": { "type": ["string", "null"] },
+        "known_exclusions_present": { "type": ["string", "null"] },
+        "utilization_review_note": { "type": ["string", "null"] },
+        "raw_clinical_notes": { "type": ["string", "null"] }
+      },
+      "required": ["requested_service", "primary_diagnosis"]
+    },
+    "CriterionResult": {
+      "type": "object",
+      "properties": {
+        "criterion_id": { "type": "string" },
+        "criterion_name": { "type": "string" },
+        "status": { "type": "string", "enum": ["MET", "PARTIAL", "UNMET", "N/A"] },
+        "supporting_evidence": { "type": ["string", "null"] },
+        "gap_or_risk": { "type": ["string", "null"] }
+      },
+      "required": ["criterion_id", "criterion_name", "status"]
+    },
+    "EvidenceSnippet": {
+      "type": "object",
+      "properties": {
+        "source": { "type": "string" },
+        "excerpt": { "type": "string" }
+      },
+      "required": ["source", "excerpt"]
+    },
+    "PreAuthSkillOutput": {
+      "type": "object",
+      "properties": {
+        "case_id": { "type": "string" },
+        "requested_service": { "type": "string" },
+        "recommendation": {
+          "type": "string",
+          "enum": ["LIKELY_APPROVE", "NEED_MORE_INFO", "LIKELY_DENY"]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["HIGH", "MEDIUM", "LOW"]
+        },
+        "clinical_summary": { "type": "string" },
+        "criteria_results": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/CriterionResult" }
+        },
+        "criteria_met": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "criteria_partial_or_unmet": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "supporting_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/EvidenceSnippet" }
+        },
+        "missing_information": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "provider_query": { "type": "string" },
+        "appeal_direction": { "type": ["string", "null"] },
+        "flip_condition": { "type": ["string", "null"] },
+        "processing_time_ms": { "type": "integer" },
+        "step1_time_ms": { "type": "integer" },
+        "step2_time_ms": { "type": "integer" },
+        "model_used": { "type": "string" }
+      },
+      "required": [
+        "case_id",
+        "requested_service",
+        "recommendation",
+        "confidence",
+        "clinical_summary",
+        "criteria_results",
+        "criteria_met",
+        "criteria_partial_or_unmet",
+        "supporting_evidence",
+        "missing_information",
+        "provider_query",
+        "processing_time_ms",
+        "step1_time_ms",
+        "step2_time_ms",
+        "model_used"
+      ]
+    }
+  }
+}

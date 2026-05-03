@@ -1,0 +1,114 @@
+[
+  {
+    "section": "Request",
+    "field": "Requested service",
+    "value": "C5-C6 cervical decompression and fusion",
+    "source": "Pre-auth request form",
+    "notes": "Requested as inpatient, expected LOS 2 midnights"
+  },
+  {
+    "section": "Request",
+    "field": "Primary diagnosis",
+    "value": "Cervical spondylotic myelopathy with radiculopathy",
+    "source": "Surgeon consult",
+    "notes": "Diagnosis wording varies slightly across notes"
+  },
+  {
+    "section": "Request",
+    "field": "Payer policy used",
+    "value": "Commercial Spine Surgery Policy v2026.1 (synthetic abstraction)",
+    "source": "Assignment packet",
+    "notes": "Requires imaging correlation, objective deficits/myelopathy, failed conservative treatment, functional impairment, and site-of-care justification for inpatient"
+  },
+  {
+    "section": "Demographics",
+    "field": "Age / sex",
+    "value": "58 / Male",
+    "source": "Registration",
+    "notes": null
+  },
+  {
+    "section": "Symptoms",
+    "field": "Chief symptoms",
+    "value": "Neck pain, bilateral hand numbness, dropping objects, gait imbalance",
+    "source": "Surgeon consult + PT notes",
+    "notes": "Symptoms progressed over 8 months"
+  },
+  {
+    "section": "Symptoms",
+    "field": "Pain severity",
+    "value": "8/10, worse with extension",
+    "source": "Surgeon consult",
+    "notes": "Pain alone is not sufficient"
+  },
+  {
+    "section": "Function",
+    "field": "ADL impact",
+    "value": "Difficulty buttoning shirt, handwriting deterioration, unsafe on stairs, reduced work productivity",
+    "source": "PT note; partial mention in HPI",
+    "notes": "Critical but not stated clearly in latest surgeon note"
+  },
+  {
+    "section": "Exam",
+    "field": "Objective findings",
+    "value": "Hyperreflexia, positive Hoffmann sign, reduced grip strength 4/5, sensory loss in C6 distribution",
+    "source": "Neurology note + surgeon exam",
+    "notes": "One PCP note says 'strength grossly intact'"
+  },
+  {
+    "section": "Imaging",
+    "field": "MRI cervical spine",
+    "value": "Severe C5-C6 canal stenosis with cord compression and T2 cord signal change; moderate foraminal narrowing",
+    "source": "MRI report",
+    "notes": "Strong objective anchor"
+  },
+  {
+    "section": "Treatment history",
+    "field": "Conservative care",
+    "value": "10 weeks PT, NSAIDs, gabapentin, muscle relaxant, cervical ESI",
+    "source": "Medication history + PT + pain clinic note",
+    "notes": "ESI gave transient relief only"
+  },
+  {
+    "section": "Treatment history",
+    "field": "Response",
+    "value": "PT improved flexibility but worsened hand clumsiness; meds inadequate; ESI relief <2 weeks",
+    "source": "PT discharge + pain clinic note",
+    "notes": "Supports escalation"
+  },
+  {
+    "section": "Comorbidities",
+    "field": "Medical risk factors",
+    "value": "Type 2 diabetes, obesity (BMI 36), obstructive sleep apnea on CPAP",
+    "source": "Problem list",
+    "notes": "Relevant for inpatient monitoring"
+  },
+  {
+    "section": "Safety",
+    "field": "Recent events",
+    "value": "Two near-falls in prior month due to gait instability",
+    "source": "PT note",
+    "notes": "Not mentioned in request form"
+  },
+  {
+    "section": "Administrative",
+    "field": "Missing documentation",
+    "value": "Latest surgeon note does not explicitly state ADL failure or why ASC/outpatient is unsafe",
+    "source": "Chart review",
+    "notes": "Likely reason for payer pend"
+  },
+  {
+    "section": "Administrative",
+    "field": "Contradiction",
+    "value": "PCP note from 3 months earlier says no weakness; later specialist notes show weakness",
+    "source": "PCP vs neurology/surgeon",
+    "notes": "Requires source weighting and temporal reasoning"
+  },
+  {
+    "section": "Requested outcome",
+    "field": "Expected clinical interpretation",
+    "value": "Medically necessary surgery is likely supported; documentation for inpatient status is incomplete",
+    "source": "Internal gold label",
+    "notes": "Initial workflow outcome should be NEED_MORE_INFO / likely approvable after addendum"
+  }
+]

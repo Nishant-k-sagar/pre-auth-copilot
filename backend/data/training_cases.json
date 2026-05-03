@@ -1,0 +1,112 @@
+[
+  {
+    "case_id": "PA-001",
+    "requested_service": "C5-C6 cervical decompression/fusion (inpatient)",
+    "clinical_scenario": "Progressive cervical myelopathy/radiculopathy over 8 months",
+    "key_supporting_evidence": "MRI severe canal stenosis with cord compression/T2 signal change; hyperreflexia; Hoffmann sign; failed PT, gabapentin, NSAIDs, ESI",
+    "key_gaps_or_risks": "Latest consult lacks explicit ADL impairment statement and weak inpatient site-of-care justification",
+    "expected_outcome": "NEED_MORE_INFO",
+    "why": "Likely medically necessary, but documentation is not payer-ready for inpatient request",
+    "if_additional_documentation_arrives": "If surgeon addendum documents gait imbalance/hand dysfunction affecting ADLs and inpatient risk due to OSA/obesity/fall risk, likely approve",
+    "complexity_notes": "Contradictory exam language across notes; functional loss buried in PT note"
+  },
+  {
+    "case_id": "PA-002",
+    "requested_service": "Elective lumbar fusion for chronic low-back pain",
+    "clinical_scenario": "Mechanical back pain without clear instability",
+    "key_supporting_evidence": "Chronic pain >1 year; degenerative changes on MRI",
+    "key_gaps_or_risks": "No documented instability; no neurologic deficit; conservative therapy incompletely documented; pain/function mismatch",
+    "expected_outcome": "LIKELY_DENY",
+    "why": "Does not meet typical fusion criteria under conservative payer policy",
+    "if_additional_documentation_arrives": "Only flips if instability, progressive deficit, or exhaustive failed non-operative management is documented",
+    "complexity_notes": "Common false-positive case for LLMs that over-weight pain language"
+  },
+  {
+    "case_id": "PA-003",
+    "requested_service": "Total knee arthroplasty",
+    "clinical_scenario": "End-stage osteoarthritis with major functional decline",
+    "key_supporting_evidence": "Severe tricompartmental OA on X-ray; failed NSAIDs/injection/PT; cane use; inability to climb stairs",
+    "key_gaps_or_risks": "BMI elevated but not an exclusion in provided policy",
+    "expected_outcome": "LIKELY_APPROVE",
+    "why": "Radiographic disease, symptom severity, and failed conservative treatment are aligned",
+    "if_additional_documentation_arrives": "N/A",
+    "complexity_notes": "Good approve benchmark"
+  },
+  {
+    "case_id": "PA-004",
+    "requested_service": "Home oxygen (nocturnal only)",
+    "clinical_scenario": "COPD with dyspnea but limited qualifying hypoxemia data",
+    "key_supporting_evidence": "Dyspnea symptoms and COPD diagnosis",
+    "key_gaps_or_risks": "No resting/ambulatory sats that meet threshold; nocturnal desaturation study absent",
+    "expected_outcome": "LIKELY_DENY",
+    "why": "Symptoms alone do not satisfy oxygen coverage criteria",
+    "if_additional_documentation_arrives": "Could become approvable with documented qualifying oximetry/ABG",
+    "complexity_notes": "Tests evidence over narrative"
+  },
+  {
+    "case_id": "PA-005",
+    "requested_service": "Biologic therapy for ulcerative colitis",
+    "clinical_scenario": "Moderate-to-severe UC flare refractory to standard therapy",
+    "key_supporting_evidence": "Frequent bloody stools; calprotectin high; steroid-dependent; failed mesalamine and azathioprine",
+    "key_gaps_or_risks": "TB/hepatitis screening pending",
+    "expected_outcome": "NEED_MORE_INFO",
+    "why": "Clinical severity supports therapy, but safety prerequisites incomplete",
+    "if_additional_documentation_arrives": "Likely approve once infectious screening and baseline labs complete",
+    "complexity_notes": "Tests prerequisite bundle logic"
+  },
+  {
+    "case_id": "PA-006",
+    "requested_service": "PET/CT surveillance after thyroid cancer",
+    "clinical_scenario": "Low-risk post-treatment surveillance request",
+    "key_supporting_evidence": "History of cancer noted",
+    "key_gaps_or_risks": "No rising tumor markers, no suspicious conventional imaging, guideline mismatch",
+    "expected_outcome": "LIKELY_DENY",
+    "why": "High-cost imaging not supported in asymptomatic low-risk surveillance under policy",
+    "if_additional_documentation_arrives": "Could change if thyroglobulin rises or suspicious lesions emerge",
+    "complexity_notes": "Tests overuse detection"
+  },
+  {
+    "case_id": "PA-007",
+    "requested_service": "IVIG for CIDP",
+    "clinical_scenario": "Neuromuscular disease with progression and EMG evidence",
+    "key_supporting_evidence": "Progressive weakness, areflexia, EMG/NCS supportive, steroid intolerance",
+    "key_gaps_or_risks": "One note questions diagnosis certainty",
+    "expected_outcome": "LIKELY_APPROVE",
+    "why": "Objective studies and functional loss support necessity despite note ambiguity",
+    "if_additional_documentation_arrives": "N/A",
+    "complexity_notes": "Tests source hierarchy: EMG > vague note"
+  },
+  {
+    "case_id": "PA-008",
+    "requested_service": "Inpatient rehabilitation after ischemic stroke",
+    "clinical_scenario": "Recent stroke with residual deficits",
+    "key_supporting_evidence": "Needs two disciplines, can participate 3 hrs/day, family support limited, unsafe for home",
+    "key_gaps_or_risks": "Mild aphasia documented inconsistently",
+    "expected_outcome": "LIKELY_APPROVE",
+    "why": "Meets intensity/benefit criteria for IRF in supplied policy",
+    "if_additional_documentation_arrives": "N/A",
+    "complexity_notes": "Tests post-acute site-of-care logic"
+  },
+  {
+    "case_id": "PA-009",
+    "requested_service": "Bariatric surgery",
+    "clinical_scenario": "Morbid obesity with diabetes/OSA",
+    "key_supporting_evidence": "BMI >40; diabetes/OSA; supervised weight-management program documented; psych clearance done",
+    "key_gaps_or_risks": "Nicotine cessation date unclear",
+    "expected_outcome": "NEED_MORE_INFO",
+    "why": "Clinical indication strong but program/policy prerequisites must be complete",
+    "if_additional_documentation_arrives": "Likely approve after documented nicotine abstinence window",
+    "complexity_notes": "Tests non-clinical prerequisites"
+  },
+  {
+    "case_id": "PA-010",
+    "requested_service": "TAVR",
+    "clinical_scenario": "Severe symptomatic aortic stenosis with surgical risk factors",
+    "key_supporting_evidence": "Echo severe AS, syncope, dyspnea, heart team evaluation, frailty",
+    "key_gaps_or_risks": "Coronary anatomy summary missing from referral packet",
+    "expected_outcome": "LIKELY_APPROVE",
+    "why": "High-risk symptomatic valve disease strongly supports intervention",
+    "if_additional_documentation_arrives": "Packet gap should not overturn if heart-team assessment is complete",
+    "complexity_notes": "Tests high-acuity cardiovascular case"
+  }
+]

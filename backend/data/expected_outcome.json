@@ -1,0 +1,56 @@
+{
+  "expected_recommendation": "NEED_MORE_INFO",
+  "rationale": "Clinical evidence strongly supports necessity of cervical decompression/fusion, but the authorization packet is likely to pend because the latest surgeon note does not clearly document functional decline/ADL impact and does not explicitly justify inpatient rather than outpatient/ASC care.",
+  "provider_query": "Please document: (1) specific ADL impairment attributable to cervical myelopathy, (2) progression of gait imbalance/falls, and (3) why inpatient monitoring is medically necessary given OSA, obesity, diabetes, neurologic deficits, and fall risk.",
+  "flip_condition": "Addendum or revised request explicitly linking ADL loss and inpatient safety risk to the requested surgery/site of care.",
+  "criteria": [
+    {
+      "criterion_id": "C1",
+      "policy_criterion": "Imaging correlates with symptoms",
+      "status": "MET",
+      "supporting_evidence": "MRI shows severe C5-C6 stenosis, cord compression, T2 signal change matching bilateral hand symptoms/myelopathy",
+      "gap_risk": "None",
+      "expected_skill_behavior": "Quote MRI report and connect to symptom pattern"
+    },
+    {
+      "criterion_id": "C2",
+      "policy_criterion": "Objective neurologic deficit or myelopathy documented",
+      "status": "MET",
+      "supporting_evidence": "Hyperreflexia, Hoffmann sign, grip weakness, gait imbalance",
+      "gap_risk": "Older PCP note conflicts but is less relevant/older",
+      "expected_skill_behavior": "Prefer recent specialist findings and mention contradiction"
+    },
+    {
+      "criterion_id": "C3",
+      "policy_criterion": "Failure of adequate conservative treatment",
+      "status": "MET",
+      "supporting_evidence": "10 weeks PT, NSAIDs, gabapentin, muscle relaxant, cervical ESI with transient benefit",
+      "gap_risk": "Must synthesize data across multiple sources",
+      "expected_skill_behavior": "Construct treatment timeline explicitly"
+    },
+    {
+      "criterion_id": "C4",
+      "policy_criterion": "Functional impairment documented",
+      "status": "PARTIAL",
+      "supporting_evidence": "PT note: dropping objects, trouble buttoning shirt, unsafe stairs",
+      "gap_risk": "Latest surgeon consult does not clearly state ADL impairment",
+      "expected_skill_behavior": "Flag missing addendum; do not hallucinate stronger wording"
+    },
+    {
+      "criterion_id": "C5",
+      "policy_criterion": "Inpatient site-of-care justification",
+      "status": "PARTIAL",
+      "supporting_evidence": "OSA, obesity, diabetes, fall risk, myelopathy",
+      "gap_risk": "Request form does not clearly explain why outpatient/ASC is inappropriate",
+      "expected_skill_behavior": "Recommend provider query for inpatient justification"
+    },
+    {
+      "criterion_id": "C6",
+      "policy_criterion": "No policy prerequisites missing",
+      "status": "PARTIAL",
+      "supporting_evidence": "No obvious missing tests for surgery",
+      "gap_risk": "Packet quality issue remains",
+      "expected_skill_behavior": "Return NEED_MORE_INFO rather than outright deny"
+    }
+  ]
+}

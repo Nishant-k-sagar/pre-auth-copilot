@@ -1,0 +1,11 @@
+[tool.pyright]
+ignore = [
+    "**/venv/**",
+    "**/.venv/**"
+]
+reportMissingImports = true
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportMissingTypeArgument = false
+reportUntypedFunctionDecorator = false

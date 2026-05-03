@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "category": "Demographics",
+    "aspect": "Age",
+    "description": "Patient age at time of request",
+    "typical_type": "integer",
+    "example_value": "58",
+    "why_it_matters": "Eligibility thresholds, procedural risk, policy triggers"
+  },
+  {
+    "id": 2,
+    "category": "Demographics",
+    "aspect": "Sex",
+    "description": "Biologic sex if clinically relevant",
+    "typical_type": "text",
+    "example_value": "Male",
+    "why_it_matters": "Relevant for certain services/policies"
+  },
+  {
+    "id": 3,
+    "category": "Coverage",
+    "aspect": "Payer / Plan",
+    "description": "Health plan and product type",
+    "typical_type": "text",
+    "example_value": "Commercial PPO",
+    "why_it_matters": "Determines policy source and authorization rules"
+  },
+  {
+    "id": 4,
+    "category": "Coverage",
+    "aspect": "Requested service",
+    "description": "Procedure/drug/test being requested",
+    "typical_type": "text",
+    "example_value": "C5-C6 cervical decompression/fusion",
+    "why_it_matters": "Primary subject of necessity review"
+  },
+  {
+    "id": 5,
+    "category": "Coverage",
+    "aspect": "Site of care requested",
+    "description": "Inpatient/outpatient/ASC/home/IRF/SNF",
+    "typical_type": "text",
+    "example_value": "Inpatient",
+    "why_it_matters": "Needed for site-of-care appropriateness"
+  },
+  {
+    "id": 6,
+    "category": "Coverage",
+    "aspect": "Requested length of stay",
+    "description": "LOS or treatment duration",
+    "typical_type": "text",
+    "example_value": "2 midnights",
+    "why_it_matters": "Used for level-of-care review"
+  },
+  {
+    "id": 7,
+    "category": "Diagnosis",
+    "aspect": "Primary diagnosis",
+    "description": "Main condition supporting request",
+    "typical_type": "text",
+    "example_value": "Cervical spondylotic myelopathy",
+    "why_it_matters": "Links service to disease"
+  },
+  {
+    "id": 8,
+    "category": "Diagnosis",
+    "aspect": "Secondary diagnoses / comorbidities",
+    "description": "Additional active conditions",
+    "typical_type": "list",
+    "example_value": "Type 2 diabetes; OSA; obesity",
+    "why_it_matters": "May raise risk or justify site of care"
+  },
+  {
+    "id": 9,
+    "category": "Clinical severity",
+    "aspect": "Symptom duration",
+    "description": "How long symptoms have persisted",
+    "typical_type": "text/date range",
+    "example_value": "8 months",
+    "why_it_matters": "Supports chronicity / failure of conservative care"
+  },
+  {
+    "id": 10,
+    "category": "Clinical severity",
+    "aspect": "Pain severity",
+    "description": "Numeric or descriptive pain level",
+    "typical_type": "numeric/text",
+    "example_value": "8/10 neck pain",
+    "why_it_matters": "Useful but insufficient alone"
+  },
+  {
+    "id": 11,
+    "category": "Clinical severity",
+    "aspect": "Functional impairment / ADLs",
+    "description": "How condition limits daily function",
+    "typical_type": "text",
+    "example_value": "Drops objects; unsafe stairs; cannot button shirt",
+    "why_it_matters": "Often decisive for payer approval"
+  },
+  {
+    "id": 12,
+    "category": "Clinical severity",
+    "aspect": "Objective neurologic deficits",
+    "description": "Weakness, sensory loss, reflex changes, gait issues",
+    "typical_type": "text",
+    "example_value": "Hyperreflexia, positive Hoffmann sign, hand numbness",
+    "why_it_matters": "High-value objective evidence"
+  },
+  {
+    "id": 13,
+    "category": "Clinical severity",
+    "aspect": "Vital signs / physiologic instability",
+    "description": "When relevant to acute requests",
+    "typical_type": "text",
+    "example_value": "Fever 38.7C; HR 118",
+    "why_it_matters": "Needed for acute care necessity"
+  },
+  {
+    "id": 14,
+    "category": "Clinical severity",
+    "aspect": "Mental status / cognition",
+    "description": "Cognition, aphasia, delirium, participation ability",
+    "typical_type": "text",
+    "example_value": "Mild aphasia, follows commands",
+    "why_it_matters": "Important in rehab/post-acute cases"
+  },
+  {
+    "id": 15,
+    "category": "History",
+    "aspect": "Prior conservative treatment",
+    "description": "PT, meds, injections, bracing, lifestyle program",
+    "typical_type": "list",
+    "example_value": "10 weeks PT; NSAIDs; gabapentin; ESI",
+    "why_it_matters": "Many policies require failed prior treatment"
+  },
+  {
+    "id": 16,
+    "category": "History",
+    "aspect": "Response to prior treatment",
+    "description": "Failed / partial / intolerant / transient benefit",
+    "typical_type": "text",
+    "example_value": "Transient relief after ESI; PT worsened symptoms",
+    "why_it_matters": "Shows why escalation is needed"
+  },
+  {
+    "id": 17,
+    "category": "History",
+    "aspect": "Prior relevant surgeries/procedures",
+    "description": "Previous related interventions",
+    "typical_type": "text",
+    "example_value": "No prior cervical surgery",
+    "why_it_matters": "Affects appropriateness and policy logic"
+  },
+  {
+    "id": 18,
+    "category": "Medication",
+    "aspect": "Current medication list",
+    "description": "Active medications relevant to condition",
+    "typical_type": "list",
+    "example_value": "Metformin; gabapentin; ibuprofen",
+    "why_it_matters": "Supports treatment history and risk profile"
+  },
+  {
+    "id": 19,
+    "category": "Medication",
+    "aspect": "Medication contraindications / intolerance",
+    "description": "Allergy, side effect, inability to use standard therapy",
+    "typical_type": "text",
+    "example_value": "Sedation with gabapentin; NSAID gastritis",
+    "why_it_matters": "Explains why next-line therapy is reasonable"
+  },
+  {
+    "id": 20,
+    "category": "Diagnostics",
+    "aspect": "Imaging findings",
+    "description": "X-ray/CT/MRI/ultrasound/echo etc.",
+    "typical_type": "text",
+    "example_value": "MRI: severe C5-C6 stenosis, cord compression, T2 signal",
+    "why_it_matters": "Often most important objective anchor"
+  },
+  {
+    "id": 21,
+    "category": "Diagnostics",
+    "aspect": "Lab results and trends",
+    "description": "Relevant lab values over time",
+    "typical_type": "text",
+    "example_value": "HbA1c 8.1%; CRP 24; WBC 14.2",
+    "why_it_matters": "Supports severity, infection, safety, prerequisites"
+  },
+  {
+    "id": 22,
+    "category": "Diagnostics",
+    "aspect": "Pathology / biopsy / culture",
+    "description": "When applicable",
+    "typical_type": "text",
+    "example_value": "Biopsy-confirmed malignancy",
+    "why_it_matters": "Needed for oncology/infectious cases"
+  },
+  {
+    "id": 23,
+    "category": "Diagnostics",
+    "aspect": "Specialized tests",
+    "description": "EMG/PFT/oximetry/endoscopy/polysomnography etc.",
+    "typical_type": "text",
+    "example_value": "EMG supports CIDP",
+    "why_it_matters": "High-yield objective criteria"
+  },
+  {
+    "id": 24,
+    "category": "Utilization",
+    "aspect": "Previous hospitalization / ED visits",
+    "description": "Recent utilization related to condition",
+    "typical_type": "text",
+    "example_value": "2 ED visits in past month for falls",
+    "why_it_matters": "Signals severity and risk"
+  },
+  {
+    "id": 25,
+    "category": "Utilization",
+    "aspect": "Complications / red flags",
+    "description": "Cord signal change, syncope, GI bleed, sepsis, etc.",
+    "typical_type": "text",
+    "example_value": "Progressive gait imbalance and falls",
+    "why_it_matters": "Often overrides standard step therapy"
+  },
+  {
+    "id": 26,
+    "category": "Administrative",
+    "aspect": "Ordering provider specialty",
+    "description": "Specialist type and role",
+    "typical_type": "text",
+    "example_value": "Orthopedic spine surgeon",
+    "why_it_matters": "Some policies require specialist evaluation"
+  },
+  {
+    "id": 27,
+    "category": "Administrative",
+    "aspect": "Payer policy / guideline version",
+    "description": "Policy text or criteria version used",
+    "typical_type": "text",
+    "example_value": "Commercial Spine Surgery Policy v2026.1",
+    "why_it_matters": "Needed for reproducibility"
+  },
+  {
+    "id": 28,
+    "category": "Administrative",
+    "aspect": "Required prerequisites completed",
+    "description": "e.g., psych clearance, TB test, smoking cessation",
+    "typical_type": "text",
+    "example_value": "TB/HBV pending",
+    "why_it_matters": "Common cause of pend/denial despite clinical need"
+  },
+  {
+    "id": 29,
+    "category": "Administrative",
+    "aspect": "Missing records",
+    "description": "Known missing note/test/document",
+    "typical_type": "text",
+    "example_value": "No recent ADL statement in surgical consult",
+    "why_it_matters": "Skill must identify gaps explicitly"
+  },
+  {
+    "id": 30,
+    "category": "Quality",
+    "aspect": "Contradictory documentation flags",
+    "description": "Conflicting facts across sources",
+    "typical_type": "text",
+    "example_value": "One note says no weakness; PT notes hand weakness",
+    "why_it_matters": "Should lower confidence and trigger review"
+  }
+]

@@ -1,0 +1,10 @@
+{
+    "python.defaultInterpreterPath": "C:/Users/nisha/AppData/Local/Programs/Python/Python38/python.exe",
+    "python.analysis.extraPaths": ["./backend"],
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.analysis.exclude": [
+        "**/venv/**",
+        "**/.venv/**"
+    ]
+}

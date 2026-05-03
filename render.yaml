@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: preauth-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MISTRAL_API_KEY
+        value: your_mistral_api_key
+      - key: API_KEY
+        value: your_secure_api_key
+      - key: ALLOWED_ORIGINS
+        value: https://preauth-frontend.onrender.com
+    plan: free
+
+  - type: static
+    name: preauth-frontend
+    rootDir: frontend
+    buildCommand: npm install && npm run build && npm run export
+    publishPath: out
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://preauth-backend.onrender.com
+    plan: free

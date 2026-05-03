@@ -1,0 +1,27 @@
+# Uptime Monitor Configuration for Render Services
+# This configuration keeps the preauth services awake on Render's free tier
+
+services:
+  - name: backend
+    url: https://preauth-backend.onrender.com
+    ping_path: /api/health
+    timeout: 10.0
+    expected_status: 200
+
+  - name: frontend
+    url: https://preauth-frontend.onrender.com
+    ping_path: /
+    timeout: 10.0
+    expected_status: 200
+
+# Ping interval in seconds (default: 600 = 10 minutes)
+# Render free tier sleeps after 15 minutes of inactivity
+interval_seconds: 600
+
+# Retry configuration
+max_retries: 3
+retry_delay: 5.0
+timeout: 10.0
+
+# Log response bodies (useful for debugging)
+log_responses: false
