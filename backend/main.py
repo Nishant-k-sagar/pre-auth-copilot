@@ -15,6 +15,7 @@ import logging
 import os
 import tempfile
 from pathlib import Path
+from urllib.parse import urlsplit
 from typing import Dict, List, Optional, Union, cast
 from typing_extensions import TypedDict
 
@@ -172,6 +173,42 @@ class ValidationSummary(TypedDict):
 
 DATA_DIR = Path(__file__).parent / "data"
 
+
+def _normalize_origin(origin: str) -> Optional[str]:
+    """Return a normalized origin string or None for invalid input."""
+    candidate = origin.strip().rstrip("/")
+    if not candidate:
+        return None
+
+    parsed = urlsplit(candidate)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        logger.warning("Ignoring invalid CORS origin: %s", origin)
+        return None
+
+    return f"{parsed.scheme}://{parsed.netloc}"
+
+
+def _get_allowed_origins() -> List[str]:
+    """Collect and normalize allowed CORS origins from environment variables."""
+    origin_sources = [
+        os.environ.get("ALLOWED_ORIGINS", ""),
+        os.environ.get("FRONTEND_URL", ""),
+        os.environ.get("NEXT_PUBLIC_FRONTEND_URL", ""),
+    ]
+
+    origins: List[str] = []
+    seen: set[str] = set()
+    for source in origin_sources:
+        for raw_origin in source.split(","):
+            normalized = _normalize_origin(raw_origin)
+            if normalized is None or normalized in seen:
+                continue
+            seen.add(normalized)
+            origins.append(normalized)
+
+    logger.info("Configured CORS allowed origins: %s", origins)
+    return origins
+
 app = FastAPI(
     title="Pre-Auth Copilot API",
     description="LLM-powered pre-authorization medical necessity reviewer",
@@ -181,14 +218,14 @@ app = FastAPI(
 app.add_middleware(RequestSizeLimitMiddleware, max_bytes=MAX_REQUEST_BODY_BYTES)
 
 # CORS — declared before routes. Change allow_origins to deployed domain in production.
-allowed_origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000")
-origins_list = [o.strip() for o in allowed_origins.split(",") if o.strip()]
+origins_list = _get_allowed_origins()
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins_list,
-    allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True,
 )
 
 
