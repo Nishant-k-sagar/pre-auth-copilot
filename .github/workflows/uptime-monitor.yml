@@ -15,13 +15,13 @@ jobs:
         run: |
           echo "Pinging backend..."
           curl -f -s -o /dev/null -w "Backend status: %{http_code}\n" \
-            https://preauth-backend.onrender.com/api/health
+            https://pre-auth-copilot.onrender.com/api/health
       
       - name: Ping Frontend
         run: |
           echo "Pinging frontend..."
           curl -f -s -o /dev/null -w "Frontend status: %{http_code}\n" \
-            https://preauth-frontend.onrender.com/
+            https://pre-auth-copilot-next-app.onrender.com/
 
       - name: Log Success
         run: echo "Uptime check completed successfully"
